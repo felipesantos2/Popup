@@ -1,34 +1,25 @@
 <?php
 
 /**
- * Plugin Name: Your Plugin Name
- * Plugin URI: https://yourdomain.com
- * Description: Insert a brief description of what your plugin does here.
+ * Plugin Name: Social Video Embed
+ * Plugin URI:https://github.com/felipesantos2/social_embed
+ * Description: Social video embed.
  * Version: 1.0.0
- * Author: Your Name
- * Author URI: https://yourdomain.com
- * License: GPL2
+ * Author: Felipe Pinheiro
+ * Author URI: https://github.com/felipesantos2
  */
 
 
-  
-function pluginprefix_setup_post_type() {
-    register_post_type( 'book', ['public' => true ] ); 
-} 
-add_action( 'init', 'pluginprefix_setup_post_type' );
- 
- 
-/**
- * Activate the plugin.
- */
 
-function pluginprefix_activate() { 
-   
-    pluginprefix_setup_post_type(); 
-    
-    flush_rewrite_rules(); 
+// Hook to the 'init' action, which is called after WordPress is finished loading the core code
+add_action('init', 'add_Cookie');
+
+// Set a cookie with the current time of day
+function add_Cookie() {
+    setcookie("last_visit_time", date("r"), time() + 60 * 60 * 24 * 30, "/");
+    echo 'last_visit_time';
+
 }
-register_activation_hook( __FILE__, 'pluginprefix_activate' );
 
 
 
