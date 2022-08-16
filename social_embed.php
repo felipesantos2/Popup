@@ -11,15 +11,16 @@
 
 
 
-// Hook to the 'init' action, which is called after WordPress is finished loading the core code
-add_action('init', 'add_Cookie');
 
-// Set a cookie with the current time of day
-function add_Cookie() {
-    setcookie("last_visit_time", date("r"), time() + 60 * 60 * 24 * 30, "/");
-    echo 'last_visit_time';
+    function fps_videos_post($fps_post) {
+        $url_video = $fps_post;
 
-}
+        return $url_video;
+
+    }
+    
+   add_filter('the_content', fps_videos_post() );
+
 
 
 
